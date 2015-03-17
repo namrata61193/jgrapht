@@ -6,7 +6,7 @@ Written by [Barak Naveh](mailto:barak_naveh@users.sourceforge.net)  and Contribu
 
 (C) Copyright 2003-2013, by Barak Naveh and Contributors. All rights
 reserved.
-
+hello
 Please address all contributions, suggestions, and inquiries to the current project administrator [John Sichi](mailto:perfecthash@users.sf.net)
 
 ## Introduction ##
