@@ -1,7 +1,5 @@
 # JGraphT
-#Working on this project for CS 498
-# checking if it works
-#jfrejkvbejkrb
+Testing to see if jenkins builds if all the tests pass! So im writing this code on a branch called jenkinsBranch
 Released: December, 2013</p>
 
 Written by [Barak Naveh](mailto:barak_naveh@users.sourceforge.net)  and Contributors
