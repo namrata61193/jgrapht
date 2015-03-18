@@ -10,6 +10,7 @@ hello
 yay
 hathalth
 this is another test
+from testing branch
 Please address all contributions, suggestions, and inquiries to the current project administrator [John Sichi](mailto:perfecthash@users.sf.net)
 
 ## Introduction ##
