@@ -162,7 +162,7 @@ public class KShortestPaths<V, E>
         return pathList;
     }
 
-    private void assertGetPaths(V endVertex)
+    public void assertGetPaths(V endVertex)
     {
         if (endVertex == null) {
             throw new NullPointerException("endVertex is null");

@@ -174,7 +174,7 @@ public class BellmanFordShortestPath<V, E>
         return pathElement.createEdgeListPath();
     }
 
-    private void assertGetPath(V endVertex)
+    public void assertGetPath(V endVertex)
     {
         if (endVertex.equals(this.startVertex)) {
             throw new IllegalArgumentException(

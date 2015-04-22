@@ -36,7 +36,7 @@
 package org.jgrapht.alg.cycle;
 
 import static org.junit.Assert.assertTrue;
-
+import static org.junit.Assert.assertEquals;
 import org.jgrapht.graph.ClassBasedEdgeFactory;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleGraph;
@@ -55,6 +55,78 @@ public class UndirectedCycleBaseTest
 
         testAlgorithm(patonFinder);
     }
+
+   @Test
+   public void testConstructor () 
+   {
+	try {
+		PatonCycleBase<Integer, DefaultEdge> patonFinder = 
+			new PatonCycleBase<Integer, DefaultEdge>(null);
+	}
+	catch (IllegalArgumentException e) {
+		assertEquals("Null graph argument.", e.getMessage());
+	}
+    }
+
+   @Test
+   public void testPatongetGraph()
+   {
+	PatonCycleBase<Integer, DefaultEdge> patonFinder = 
+			new PatonCycleBase<Integer, DefaultEdge>();
+	assertEquals(patonFinder.getGraph(), null);
+
+   }
+
+
+   @Test
+   public void testPatonCycleSetGraph() 
+   {
+	try {
+		PatonCycleBase<Integer, DefaultEdge> patonFinder = 
+			new PatonCycleBase<Integer, DefaultEdge>();
+		patonFinder.setGraph(null);
+	}
+	catch (IllegalArgumentException e) {
+		assertEquals("Null graph argument.", e.getMessage());
+	}
+   }
+
+   @Test
+   public void testPatonCycleFindCycleBase() 
+   {
+	try {
+		PatonCycleBase<Integer, DefaultEdge> patonFinder = 
+			new PatonCycleBase<Integer, DefaultEdge>();
+		patonFinder.findCycleBase();
+	}
+	catch (IllegalArgumentException e) {
+		assertEquals("Null graph.", e.getMessage());
+	}
+   }
+
+
+
+
+    /*@Test
+    public void testFindFunctionWithNullGraph()
+    {
+	/*PatonCycleBase<Integer, DefaultEdge> patonFinder = 
+		new PatonCycleBase<Integer, DefaultEdge>(null);
+	
+	try {
+		PatonCycleBase<Integer, DefaultEdge> patonFinder = 
+			new PatonCycleBase<Integer, DefaultEdge>(null);
+		patonFinder.findCycleBase();
+	}
+	catch (IllegalArgumentException e) {
+		assertEquals ("Null graph.", e.getMessage());
+	}
+
+
+
+    }*/  
+
+
 
     private void testAlgorithm(
                                UndirectedCycleBase<Integer, DefaultEdge>

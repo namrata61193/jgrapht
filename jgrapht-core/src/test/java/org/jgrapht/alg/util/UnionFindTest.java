@@ -84,6 +84,58 @@ public class UnionFindTest
         uf.union(strs[0], strs[4]);
         union(sets, strs[0], strs[4]);
         testIdentical(strs, sets, uf);
+    
+    }
+    
+    /*public void testInvalidUnion()
+    {
+	TreeSet<String> set = new TreeSet<String>();
+        String [] strs = { "aaa", "bbb", "ccc", "ddd", "eee" };
+        ArrayList<ArrayList<String>> sets = new ArrayList<ArrayList<String>>();
+        for (String str : strs) {
+            set.add(str);
+            sets.add(new ArrayList<String>());
+            sets.get(sets.size() - 1).add(str);
+        }
+        
+	UnionFind<String> uf = new UnionFind<String>(set);
+	uf.union(strs[0], "");
+	union(sets, strs[0], "");
+	testIdentical(strs, sets, uf);
+    }*/
+    
+    public void testInvalidFind()
+    {
+	TreeSet<String> set = new TreeSet<String>();
+        String [] strs = { "aaa", "bbb", "ccc", "ddd", "eee" };
+        ArrayList<ArrayList<String>> sets = new ArrayList<ArrayList<String>>();
+        
+	for (String str : strs) {
+            set.add(str);
+            sets.add(new ArrayList<String>());
+            sets.get(sets.size() - 1).add(str);
+        }
+        UnionFind<String> uf = new UnionFind<String>(set);
+	
+	uf.union(strs[0], strs[1]);
+	testFindInvalidKey(uf, "xxx");
+    }
+
+    public void testNullKeyFind()
+    {
+	TreeSet<String> set = new TreeSet<String>();
+        String [] strs = { "aaa", "bbb", "ccc", "ddd", "eee" };
+        ArrayList<ArrayList<String>> sets = new ArrayList<ArrayList<String>>();
+        
+	for (String str : strs) {
+            set.add(str);
+            sets.add(new ArrayList<String>());
+            sets.get(sets.size() - 1).add(str);
+        }
+        UnionFind<String> uf = new UnionFind<String>(set);
+	
+	uf.union(strs[0], strs[1]);
+	testFindInvalidKey(uf, "");
     }
 
     private void union(ArrayList<ArrayList<String>> sets, String a, String b)
@@ -129,6 +181,20 @@ public class UnionFindTest
             }
         }
     }
+    
+    private void testFindInvalidKey(UnionFind<String> uf, String key)
+    {
+	String element = "";
+
+	try{
+		element = uf.find(key);		
+	} 
+	catch (IllegalArgumentException e){
+		assertEquals("elements must be contained in given set", e.getMessage());
+	}
+    }
+
+
 }
 
 // End UnionFindTest.java
