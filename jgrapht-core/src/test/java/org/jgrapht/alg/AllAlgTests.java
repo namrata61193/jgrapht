@@ -74,7 +74,10 @@ import org.junit.runners.*;
     StoerWagnerMinimumCutTest.class,
     TarjanLowestCommonAncestorTest.class,
     TransitiveClosureTest.class,
-    VertexCoversTest.class
+    VertexCoversTest.class,
+    AssertGetPathsTest.class,
+    AssertKShortestPathsFinderTest.class
+
 })
 public final class AllAlgTests
 {

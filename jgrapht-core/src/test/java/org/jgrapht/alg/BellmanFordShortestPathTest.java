@@ -55,6 +55,17 @@ public class BellmanFordShortestPathTest
     /**
      * .
      */
+     public BellmanFordShortestPath init()
+	{
+		Graph<String, DefaultWeightedEdge> g = create();
+		
+		BellmanFordShortestPath path = 
+			new BellmanFordShortestPath<String, DefaultWeightedEdge>(g, V3);
+
+		return path;
+	}
+	
+
     public void testConstructor()
     {
         BellmanFordShortestPath<String, DefaultWeightedEdge> path;
@@ -124,6 +135,34 @@ public class BellmanFordShortestPathTest
         path = findPathBetween(g, V1, V5);
         assertEquals(Arrays.asList(new DefaultEdge[] { e15 }), path);
     }
+
+    public void testSameStartandEndVertex()
+    {
+	BellmanFordShortestPath path = init();
+	try {
+		path.assertGetPath(V3);
+	}
+	catch (IllegalArgumentException e){
+		assertEquals("The end vertex is the same as the start vertex!", e.getMessage());
+	}
+     }
+	
+     public void testNonexistantEndVertex()
+     {
+	BellmanFordShortestPath path = init();
+	try {
+		path.assertGetPath("xyz");
+	}
+	catch (IllegalArgumentException e){
+		assertEquals("Graph must contain the end vertex!", e.getMessage());
+	}
+     }
+
+
+
+
+
+
 }
 
 // End BellmanFordShortestPathTest.java
