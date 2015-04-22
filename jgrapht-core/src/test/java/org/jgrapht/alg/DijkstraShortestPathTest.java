@@ -56,6 +56,15 @@ public class DijkstraShortestPathTest
     /**
      * .
      */
+    /*
+    public DijkstraShortestPath init()
+    {
+	Graph<String, DefaultWeightedEdge> g = create();
+	DijkstraShortestPath<String, DefaultWeightedEdge> path = 
+		new DijkstraShortestPath<String, DefaultWeightedEdge>(g, V3, V4, Double.POSITIVE_INFINITY);
+	return path;
+    }*/
+
     public void testConstructor()
     {
         DijkstraShortestPath<String, DefaultWeightedEdge> path;
@@ -95,6 +104,32 @@ public class DijkstraShortestPathTest
     {
         return DijkstraShortestPath.findPathBetween(g, src, dest);
     }
+
+    public void testInvalidEndVertexConstructor()
+    {
+        try {
+         	Graph<String, DefaultWeightedEdge> g = create();
+		DijkstraShortestPath<String, DefaultWeightedEdge> path = 
+			new DijkstraShortestPath<String, DefaultWeightedEdge>(g, V3, "xy", Double.POSITIVE_INFINITY);
+        }
+        catch (IllegalArgumentException e){
+                assertEquals("graph must contain the end vertex", e.getMessage());
+        }
+     }
+
+     public void testNullEndVertexConstructor()
+     {
+	try {
+         	Graph<String, DefaultWeightedEdge> g = create();
+		DijkstraShortestPath<String, DefaultWeightedEdge> path = 
+			new DijkstraShortestPath<String, DefaultWeightedEdge>(g, V3, null, Double.POSITIVE_INFINITY);
+        }
+        catch (IllegalArgumentException e){
+                assertEquals("graph must contain the end vertex", e.getMessage());
+        }
+     }
+
+
 }
 
 // End DijkstraShortestPathTest.java

@@ -37,6 +37,9 @@ package org.jgrapht.alg.cycle;
 
 import static org.junit.Assert.assertTrue;
 
+import static org.junit.Assert.assertEquals;
+
+
 import org.jgrapht.DirectedGraph;
 import org.jgrapht.graph.ClassBasedEdgeFactory;
 import org.jgrapht.graph.DefaultDirectedGraph;
@@ -66,6 +69,53 @@ public class DirectedSimpleCyclesTest
         testAlgorithm(tarjanFinder);
         testAlgorithm(johnsonFinder);
         testAlgorithm(szwarcfiterLauerFinder);
+    }
+
+    @Test
+    public void testTiernanSimpleCycleConstructor()
+    {
+	try {
+		TiernanSimpleCycles<Integer, DefaultEdge> finder = 
+			new TiernanSimpleCycles<Integer, DefaultEdge>(null);
+	}
+	catch (IllegalArgumentException e) {
+		assertEquals("Null graph argument.", e.getMessage());
+	}
+    }
+
+    @Test
+    public void testTiernanGetGraph()
+    {
+    	TiernanSimpleCycles<Integer, DefaultEdge> tiernanFinder =
+		new TiernanSimpleCycles<Integer, DefaultEdge>();
+
+	assertEquals(tiernanFinder.getGraph(), null);
+    }
+
+    @Test
+    public  void testTiernanSetGraph()
+    {
+	try {
+		TiernanSimpleCycles<Integer, DefaultEdge> finder = 
+			new TiernanSimpleCycles<Integer, DefaultEdge>();
+		finder.setGraph(null);
+	}
+	catch (IllegalArgumentException e) {
+		assertEquals("Null graph argument.", e.getMessage());
+	}
+    }
+    
+    @Test
+    public void testTiernanFindSimpleCycles()
+    {
+	try {
+		TiernanSimpleCycles<Integer, DefaultEdge> finder = 
+			new TiernanSimpleCycles<Integer, DefaultEdge>();
+		finder.findSimpleCycles();
+	}
+	catch (IllegalArgumentException e) {
+		assertEquals("Null graph.", e.getMessage());
+	}
     }
 
     private void testAlgorithm(
