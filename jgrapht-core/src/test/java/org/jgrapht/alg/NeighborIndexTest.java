@@ -55,6 +55,8 @@ public class NeighborIndexTest
     private static final String V1 = "v1";
     private static final String V2 = "v2";
     private static final String V3 = "v3";
+    private static final String V4 = "v4";
+
 
     //~ Methods ----------------------------------------------------------------
 
@@ -145,6 +147,76 @@ public class NeighborIndexTest
 
         assertEquals(0, s.size());
     }
+    
+    public void testNeighborsOf()
+    {
+	 ListenableDirectedGraph<String, Object> g =
+            new ListenableDirectedGraph<String, Object>(
+                Object.class);
+        g.addVertex(V1);
+        g.addVertex(V2);
+
+        g.addEdge(V1, V2);
+
+  	NeighborIndex<String, Object> index =
+            new NeighborIndex<String, Object>(g);
+       
+	assertEquals(1, index.neighborListOf(V1).size());
+    }
+    
+   /* public void testNonPresentVertexNeighbor()
+    {
+	 ListenableDirectedGraph<String, Object> g =
+            new ListenableDirectedGraph<String, Object>(
+                Object.class);
+        g.addVertex(V1);
+        g.addVertex(V2);
+
+        g.addEdge(V1, V2);
+
+  	NeighborIndex<String, Object> index =
+            new NeighborIndex<String, Object>(g);
+       
+
+	//List<V> list = new ArrayList<V>();
+	//list = g.neighborListOf(V1);
+	assertEquals(1, index.neighborListOf(V4).size());
+    }*/
+
+    public void testMultipleSameEdgesNeighborstest()
+    {
+	 ListenableDirectedGraph<String, Object> g =
+            new ListenableDirectedGraph<String, Object>(
+                Object.class);
+        g.addVertex(V1);
+        g.addVertex(V2);
+
+        g.addEdge(V1, V2);
+	g.addEdge(V1, V2);
+
+  	NeighborIndex<String, Object> index =
+            new NeighborIndex<String, Object>(g);
+       
+	assertEquals(1, index.neighborListOf(V1).size());
+    }
+ 
+    public void testEdgesInBothDirectionsNeighborList()
+    {
+	 ListenableDirectedGraph<String, Object> g =
+            new ListenableDirectedGraph<String, Object>(
+                Object.class);
+        g.addVertex(V1);
+        g.addVertex(V2);
+
+        g.addEdge(V1, V2);
+	g.addEdge(V2, V1);
+
+  	NeighborIndex<String, Object> index =
+            new NeighborIndex<String, Object>(g);
+       
+	assertEquals(1, index.neighborListOf(V1).size());
+    }
+    
 }
 
 // End NeighborIndexTest.java

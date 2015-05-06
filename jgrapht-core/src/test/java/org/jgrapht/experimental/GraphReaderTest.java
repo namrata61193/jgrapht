@@ -57,6 +57,11 @@ public class GraphReaderTest
     String _unweighted = "p 3\ne 1 2\ne 1 3\n";
     String _weighted = "p 3\ne 1 2 .5\ne 1 3 7\n";
 
+    String _weighted2 = "p 3\ne 1 2 .5\ne 1 6 7\n";
+
+    String _weighted3 = "p 3\ne 1 2 .5\ne 1 2 7\n";
+    
+
     //~ Methods ----------------------------------------------------------------
 
     /**
@@ -115,7 +120,65 @@ public class GraphReaderTest
         }
     }
 
-    //~ Inner Classes ----------------------------------------------------------
+    
+    public void testCreateInvalidEdgeWithNonExistantVertex()
+    {
+        try {
+            GraphReader<Integer, DefaultWeightedEdge> reader =
+                new GraphReader<Integer, DefaultWeightedEdge>(
+                    new StringReader(_weighted2),
+                    1);
+            Graph<Integer, DefaultWeightedEdge> g =
+                new SimpleWeightedGraph<Integer, DefaultWeightedEdge>(
+                    DefaultWeightedEdge.class);
+            VertexFactory<Integer> vf = new IntVertexFactory();
+            reader.generateGraph(g, vf, null);
+            WeightedGraph<Integer, DefaultWeightedEdge> g2 =
+                new SimpleWeightedGraph<Integer, DefaultWeightedEdge>(
+                    DefaultWeightedEdge.class);
+            g2.addVertex(0);
+            g2.addVertex(1);
+            g2.addVertex(2);
+            g2.setEdgeWeight(g2.addEdge(0, 1), .5);
+            g2.setEdgeWeight(g2.addEdge(0, 2), 7);
+            assertEquals(g2.toString(), g.toString());
+        } catch (IOException e) {
+        }
+    }
+
+
+    public void testChecking()
+    {
+        try {
+            GraphReader<Integer, DefaultWeightedEdge> reader =
+                new GraphReader<Integer, DefaultWeightedEdge>(
+                    new StringReader(_weighted3),
+                    1);
+	
+            Graph<Integer, DefaultWeightedEdge> g =
+                new SimpleWeightedGraph<Integer, DefaultWeightedEdge>(
+                    DefaultWeightedEdge.class);
+            VertexFactory<Integer> vf = new IntVertexFactory();
+            reader.generateGraph(g, vf, null);
+       /*     WeightedGraph<Integer, DefaultWeightedEdge> g2 =
+                new SimpleWeightedGraph<Integer, DefaultWeightedEdge>(
+                    DefaultWeightedEdge.class);
+            g2.addVertex(0);
+            g2.addVertex(1);
+            g2.addVertex(2);
+            g2.setEdgeWeight(g2.addEdge(0, 1), .5);
+            g2.setEdgeWeight(g2.addEdge(0, 2), 7);
+            assertEquals(g2.toString(), g.toString());
+       */ }
+	 catch (IOException e) {
+        }
+    }
+
+
+
+
+
+	//~ Inner Classes ----------------------------------------------------------
 
     private static final class IntVertexFactory
         implements VertexFactory<Integer>

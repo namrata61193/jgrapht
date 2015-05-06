@@ -174,4 +174,47 @@ public class DirectedSimpleCyclesTest
     {
         assertTrue(finder.findSimpleCycles().size() == size);
     }
+
+
+
+
+    @Test
+   public void testConstructor1(){
+
+        try {
+                TarjanSimpleCycles t = new TarjanSimpleCycles(null);
+        }
+        catch (IllegalArgumentException e){
+                assertEquals("Null graph argument." , e.getMessage());
+        }
+     }
+
+    @Test
+    public void testSetGraph(){
+
+        try {
+                TarjanSimpleCycles t = new TarjanSimpleCycles();
+                t.setGraph(null);
+        }
+        catch (IllegalArgumentException e){
+                assertEquals("Null graph argument." , e.getMessage());
+        }
+
+    }
+
+   @Test
+   public void testGetGraph(){
+
+         DirectedGraph<Integer, DefaultEdge> graph = new DefaultDirectedGraph<Integer, DefaultEdge>
+            (
+             new ClassBasedEdgeFactory<Integer, DefaultEdge>
+             (
+              DefaultEdge.class
+             )
+            );
+
+        TarjanSimpleCycles t = new TarjanSimpleCycles(graph);
+        assertEquals(t.getGraph().toString() , graph.toString());
+
+   }
 }
