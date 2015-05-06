@@ -44,7 +44,10 @@ import org.junit.runners.*;
     FibonacciHeapTest.class,
     PrefetchIteratorTest.class,
     CompoundPermutationIterTest.class,
-    EquivalenceGroupCreatorTest.class
+    EquivalenceGroupCreatorTest.class,
+    ModifiableIntegerTest.class,
+    VertexPairTest.class
+
 })
 public class AllUtilTests
 {
