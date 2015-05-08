@@ -164,7 +164,8 @@ public class NeighborIndexTest
 	assertEquals(1, index.neighborListOf(V1).size());
     }
     
-   /* public void testNonPresentVertexNeighbor()
+    // @Test(expected=IllegalArgumentException.class)
+    public void testNonPresentVertexNeighbor()
     {
 	 ListenableDirectedGraph<String, Object> g =
             new ListenableDirectedGraph<String, Object>(
@@ -181,7 +182,7 @@ public class NeighborIndexTest
 	//List<V> list = new ArrayList<V>();
 	//list = g.neighborListOf(V1);
 	assertEquals(1, index.neighborListOf(V4).size());
-    }*/
+    }
 
     public void testMultipleSameEdgesNeighborstest()
     {
