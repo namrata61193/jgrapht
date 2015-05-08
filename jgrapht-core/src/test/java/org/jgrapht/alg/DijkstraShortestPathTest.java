@@ -105,6 +105,63 @@ public class DijkstraShortestPathTest
         return DijkstraShortestPath.findPathBetween(g, src, dest);
     }
 
+    public void testNoStartVertex()
+    {
+	DijkstraShortestPath<String, DefaultWeightedEdge> path;
+	try{	
+		Graph<String, DefaultWeightedEdge> g = create();
+                 path = new DijkstraShortestPath<String, DefaultWeightedEdge>(g, null, V3, Double.POSITIVE_INFINITY);	
+
+		fail("Exception not thrown");	
+	}
+
+	catch (Exception e){
+
+                assertEquals("graph must contain the start vertex", e.getMessage());
+		
+	}
+    }
+
+    
+    public void testDoubleRadius()
+    {
+	DijkstraShortestPath<String, DefaultWeightedEdge> path;
+	try{	
+		Graph<String, DefaultWeightedEdge> g = create();
+                 path = new DijkstraShortestPath<String, DefaultWeightedEdge>(g, V4, V3, 1.78d);	
+
+		fail("Exception not thrown");	
+	}
+
+	catch (Exception e){
+
+                assertEquals("radius must be of type float", e.getMessage());
+		
+	}
+    }
+
+
+
+    public void testInvalidGraph()
+    {
+	DijkstraShortestPath<String, DefaultWeightedEdge> path;
+	try{	
+                 path = new DijkstraShortestPath<String, DefaultWeightedEdge>(null, V4, V3, Double.POSITIVE_INFINITY);	
+
+		fail("Exception not thrown");	
+	}
+
+	catch (Exception e){
+
+                assertEquals("“graph must not be empty”", e.getMessage());
+		
+	}
+    }
+
+    
+
+	
+
     public void testInvalidEndVertexConstructor()
     {
         try {
