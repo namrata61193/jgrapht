@@ -46,14 +46,14 @@ public class StepDefinitions extends ShortestPathTestCase{
     }
 
 		
-//	TreeSet<String> set ;
-//	ArrayList<ArrayList<String>> sets;
-//	UnionFind<String> uf;	
+
+
 	@Given("^I have created a graph$")
 	public void I_have_a_graph(){
 		graph =	 new KShortestPathCompleteGraph6();
 		bellmanfordGraph =  create();	
 		g = createWithBias(true);
+			
 	}
 
 	@When("^I initialise the paths$")
@@ -98,6 +98,39 @@ public class StepDefinitions extends ShortestPathTestCase{
 		}
 	}		
 
+/*	@Given("I have created a set$")
+	public void create_set(){
+		set = new TreeSet<String>();
+		String [] strs = {"aaa", "bbb", "ccc", "ddd", "eee"};
+		sets = new ArrayList<ArrayList<String>>();
+		
+		for(String str: strs){
+			set.add(str);
+			sets.add(new ArrayList<String>());
+			sets.get(sets.size() - 1).add(str);
+		}
+
+		uf = new UnionFind<String>(set);
+	}
+
+	@When("^I populate the union with strings$")
+	public void populate_union(){
+		uf.union("aaa" , "bbb");
+	
+	}
+
+	@Then("^I should get an exception for an invalid key$")
+	public void invalid_key_check(){
+		String element = "";
+		try{
+			element = uf.find("xxx");
+		}
+		catch(IllegalArgumentException e){
+			assertEquals("elements must be contained in given set" , e.getMessage());
+	
+		}
+		
+	}*/
 
 	@When("^I initialise a new set of paths$")
 	public void new_path_set(){

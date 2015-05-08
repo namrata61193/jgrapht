@@ -10,8 +10,10 @@ function clone_jgrapht_if_needed() {
 }
 
 function add_cobertura_if_needed() {
-
   cd jgrapht-core
+}
+
+function add_cobertura_if_needed() {
   echo cs498dm: adding Cobertura if needed
   if ! grep cobertura pom.xml; then
     sed -i '/<plugins/a\
@@ -28,6 +30,8 @@ function run_cobertura() {
   mvn -q cobertura:cobertura | grep -v "Data file does not contain instrumentation information"
   dir=$(pwd)/target/site
   ( cd ${dir}; zip -rq cobertura.zip cobertura ) # even better would be to expose coverage via Jenkins!
+  #dir=$(pwd)  
+( cd ${dir}; zip -rq cobertura.zip cobertura ) # even better would be to expose coverage via Jenkins!
   echo cs498dm: Cobertura report is in ${dir}/cobertura and packed in ${dir}/cobertura.zip
   echo cs498dm: you may want to copy the coverage with: scp $(uname -n):${dir}/cobertura.zip .
   echo cs498dm: You should add some tests to increase statement coverage\!
