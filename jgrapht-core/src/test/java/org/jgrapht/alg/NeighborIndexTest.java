@@ -165,7 +165,6 @@ public class NeighborIndexTest
     }
     
     // @Test(expected=IllegalArgumentException.class)
-    public void testNonPresentVertexNeighbor()
    /* public void testNonPresentVertexNeighbor()
 >>>>>>> 08b390d4b948396347f0dae6f0b073dc24ec6037
     {
